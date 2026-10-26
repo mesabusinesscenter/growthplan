@@ -1,0 +1,438 @@
+<title>Mesa Leasing Plan</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: a working document — sticky section nav, numbered parts, tables carrying the detail. */
+:root{
+  --paper:#F7F6F2; --panel:#FFFFFF; --ink:#1C1A17; --muted:#6E675C;
+  --teal:#0F7B72; --teal-deep:#0A5A54; --brick:#8C1416;
+  --sand:#E6DCC8; --line:#DAD4C7; --shade:#211D18;
+  --d:'Archivo',"Helvetica Neue",Arial,sans-serif;
+  --b:'Source Serif 4',Georgia,'Times New Roman',serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#17140F; --panel:#211D18; --ink:#F0EADC; --muted:#A79C89;
+  --teal:#35B3A6; --teal-deep:#8FD8CE; --brick:#E07A72;
+  --sand:#3A3228; --line:#352E25; --shade:#100E0B; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --paper:#17140F; --panel:#211D18; --ink:#F0EADC; --muted:#A79C89;
+  --teal:#35B3A6; --teal-deep:#8FD8CE; --brick:#E07A72;
+  --sand:#3A3228; --line:#352E25; --shade:#100E0B; color-scheme:dark }
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 var(--b);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.wrap{max-width:900px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--d);font-weight:700;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5.2vw,52px);line-height:1.04;letter-spacing:-.02em}
+h2{font-size:clamp(21px,2.9vw,30px);line-height:1.12;letter-spacing:-.012em;margin:0 0 14px}
+h3{font-size:17.5px;margin:26px 0 7px}
+p{margin:0 0 14px;max-width:66ch}
+.lede{font-size:clamp(17.5px,2vw,20px);line-height:1.5}
+.eyebrow{font:600 12px/1 var(--d);letter-spacing:.2em;text-transform:uppercase;color:var(--teal-deep);margin:0 0 12px}
+.muted{color:var(--muted)}
+a{color:var(--teal-deep)}
+.head{background:var(--shade);color:#F0EADC;padding-block:clamp(30px,5vw,54px);position:relative;overflow:hidden}
+.head img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.2}
+.head .wrap{position:relative}
+.head .eyebrow{color:#8FD8CE}
+.head h1{color:#fff;margin-bottom:10px}
+.head p{color:#CFC3AE;margin:0}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--panel);
+  border-bottom:1px solid var(--line);overflow-x:auto}
+nav ul{display:flex;gap:2px;list-style:none;margin:0;padding:8px 14px;white-space:nowrap}
+nav a{display:block;font:600 11.5px/1 var(--d);letter-spacing:.09em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:2px}
+nav a:hover{color:var(--teal-deep);background:var(--sand)}
+section{padding-block:clamp(32px,4.6vw,56px);border-bottom:1px solid var(--line);scroll-margin-top:60px}
+section:nth-child(even of section){background:var(--panel)}
+.num{font:700 12px/1 var(--d);letter-spacing:.14em;color:var(--brick);margin-bottom:8px}
+table{width:100%;border-collapse:collapse;font-size:15.5px;margin:10px 0 16px}
+th{font:600 11px/1.3 var(--d);letter-spacing:.11em;text-transform:uppercase;text-align:left;
+  color:var(--muted);padding:0 10px 8px 0;border-bottom:1px solid var(--line)}
+td{padding:9px 10px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{font-weight:600;white-space:nowrap;padding-right:20px}
+td.w{white-space:normal}
+.tw{overflow-x:auto}
+.box{border-left:3px solid var(--teal);background:var(--sand);padding:14px 18px;margin:16px 0}
+.box p:last-child{margin:0}
+.hit{border:2px solid var(--brick);padding:14px 18px;margin:16px 0}
+.hit p:last-child{margin:0}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:14px 0}
+.card{border:1px solid var(--line);background:var(--panel);padding:15px 17px}
+.card .k{font:700 12px/1 var(--d);letter-spacing:.1em;text-transform:uppercase;color:var(--brick);margin-bottom:7px}
+.card p{font-size:15.5px;margin:0}
+section:nth-child(even of section) .card{background:var(--paper)}
+.todo{border-left:3px solid var(--line);padding:7px 0 7px 15px;margin-bottom:11px;font-size:16px}
+.todo b{color:var(--brick);font-family:var(--d);font-size:12.5px;letter-spacing:.07em;
+  text-transform:uppercase;display:block;margin-bottom:2px}
+.mapbox{background:var(--panel);border:1px solid var(--line);padding:16px 14px;overflow-x:auto;margin:14px 0}
+.mapbox svg{display:block;min-width:620px;width:100%}
+section:nth-child(even of section) .mapbox{background:var(--paper)}
+.cap{font:400 13px/1.45 var(--b);color:var(--muted);font-style:italic;margin-top:7px}
+ul.t{margin:6px 0 14px;padding-left:20px} ul.t li{margin-bottom:6px}
+.foot{padding-block:28px;font-size:13.5px;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+@media (max-width:700px){.two{grid-template-columns:1fr}}
+.two>*{min-width:0}
+</style>
+
+<header class="head">
+  <img src="img/hero.jpg" alt="">
+  <div class="wrap">
+    <p class="eyebrow">NATIVE HEALTH &middot; Planning and Capital Projects</p>
+    <h1>Mesa Business Center<br>leasing plan</h1>
+    <p>777 West Southern Avenue &middot; October 2026 &middot; Working draft for discussion</p>
+  </div>
+</header>
+
+<nav><ul>
+  <li><a href="#position">Position</a></li>
+  <li><a href="#district">The district</a></li>
+  <li><a href="#market">Market</a></li>
+  <li><a href="#anchors">Anchors</a></li>
+  <li><a href="#native">Native businesses</a></li>
+  <li><a href="#offer">The offer</a></li>
+  <li><a href="#incentives">Incentives</a></li>
+  <li><a href="#organize">How we organize</a></li>
+  <li><a href="#next">Next steps</a></li>
+</ul></nav>
+
+<section id="position">
+ <div class="wrap">
+  <p class="num">01</p>
+  <h2>What we hold, and what is open</h2>
+  <p class="lede">A 40,562 square foot multi-tenant property on 2.98 acres, recorded by the county
+  as a medical building, with a licensed NATIVE HEALTH clinic operating as the anchor.</p>
+  <div class="tw"><table>
+    <tr><th>Asset</th><th>Record</th></tr>
+    <tr><td>Address</td><td class="w">777 W. Southern Avenue, Mesa, Arizona 85210</td></tr>
+    <tr><td>Parcel</td><td class="w">APN 134-22-004L &middot; 2.98 acres</td></tr>
+    <tr><td>Building</td><td class="w">40,562 SF, multi-tenant, suites opening onto covered arcades around a planted court</td></tr>
+    <tr><td>Zoning</td><td class="w">C-G General Commercial &middot; county land use: medical building</td></tr>
+    <tr><td>Submarket</td><td class="w">Superstition Corridor</td></tr>
+    <tr><td>Census tract</td><td class="w">4222.03 &mdash; a designated Opportunity Zone</td></tr>
+    <tr><td>On site</td><td class="w">Solar canopy over much of the lot, shaded arcade seating, mature desert landscaping</td></tr>
+  </table></div>
+  <div class="hit"><p><b>Roughly fifteen suites are open.</b> Our own occupancy memo and the
+  October 15 Orenda notes both put it there, following the end of the tribal nation lease. That is
+  the size of the opportunity, and the October 30 inventory should put an exact number on it.</p></div>
+  <h3>Who is already here</h3>
+  <div class="tw"><table>
+    <tr><th>Tenant or service</th><th>What it brings</th></tr>
+    <tr><td>H&amp;R Block</td><td class="w">A national brand on the arcade. Went dark when its rooftop unit failed; reopened after a $9,800 replacement.</td></tr>
+    <tr><td>Medical &amp; dental</td><td class="w">NATIVE HEALTH&rsquo;s clinic &mdash; the anchor and the referral source</td></tr>
+    <tr><td>Behavioral health</td><td class="w">Weekday appointments, steady traffic</td></tr>
+    <tr><td>Benefits</td><td class="w">AHCCCS, SNAP and TANF assistance</td></tr>
+    <tr><td>Family services</td><td class="w">Health Start, Tribal Home Visiting, WIC</td></tr>
+    <tr><td>Food pantry</td><td class="w">Families through the door every week</td></tr>
+    <tr><td>Pharmacy</td><td class="w">Coming</td></tr>
+  </table></div>
+  <div class="box"><p><b>Tribes from across the country have rented here to serve their members.</b>
+  When a nation has needed an address in this valley for its citizens, this is an address it has
+  chosen. We have never used that in a pitch, and it is the strongest proof we hold.</p></div>
+ </div>
+</section>
+
+<section id="district">
+ <div class="wrap">
+  <p class="num">02</p>
+  <h2>Why this corner is worth more than it was</h2>
+  <div class="mapbox"><svg viewBox="0 0 660 300" role="img" aria-label="Map of West Southern Avenue showing the Business Center, the new Sprouts 0.44 miles west, Alma School Road at 0.52 miles, and the Palo District 0.78 miles west">
+            <style>
+              #mp text{font-family:'Archivo',Arial,sans-serif}
+              .ml{fill:var(--ink);font-size:12px}
+              .ms{fill:var(--muted);font-size:11px}
+              .mb{fill:var(--teal-deep);font-size:13px;font-weight:700}
+            </style>
+            <g id="mp">
+              <line x1="190" y1="118" x2="190" y2="248" stroke="var(--muted)" stroke-width="9" opacity=".16"/>
+              <rect x="14" y="150" width="632" height="15" fill="var(--sand)"/>
+              <line x1="14" y1="157" x2="646" y2="157" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="9 8"/>
+              <text x="16" y="186" class="ms" style="letter-spacing:.16em;font-weight:600">WEST SOUTHERN AVENUE</text>
+              <rect x="436" y="64" width="196" height="76" fill="var(--panel)" stroke="var(--brick)" stroke-width="2.5"/>
+              <text x="452" y="90" class="mb" style="fill:var(--brick)">NATIVE HEALTH</text>
+              <text x="452" y="110" class="ml">Business Center</text>
+              <text x="452" y="129" class="ms">777 W. Southern Ave</text>
+              <line x1="534" y1="140" x2="534" y2="150" stroke="var(--brick)" stroke-width="2.5"/>
+              <circle cx="534" cy="157" r="6" fill="var(--brick)"/>
+              <rect x="26" y="44" width="250" height="96" fill="var(--panel)" stroke="var(--teal)" stroke-width="2"/>
+              <text x="151" y="68" class="mb" text-anchor="middle">THE PALO DISTRICT</text>
+              <text x="151" y="88" class="ml" text-anchor="middle">77.9 acres &middot; $2.5 billion</text>
+              <text x="151" y="107" class="ml" text-anchor="middle">25,000-seat stadium</text>
+              <text x="151" y="126" class="ms" text-anchor="middle">$100M women's health campus</text>
+              <line x1="151" y1="140" x2="151" y2="150" stroke="var(--teal)" stroke-width="2"/>
+              <circle cx="151" cy="157" r="6" fill="var(--teal)"/>
+              <circle cx="350" cy="157" r="6" fill="var(--teal)"/>
+              <line x1="350" y1="165" x2="350" y2="196" stroke="var(--teal)" stroke-width="2"/>
+              <rect x="268" y="196" width="164" height="58" fill="var(--panel)" stroke="var(--teal)" stroke-width="2"/>
+              <text x="350" y="218" class="mb" text-anchor="middle">SPROUTS</text>
+              <text x="350" y="238" class="ms" text-anchor="middle">opens Nov. 6 &middot; 0.44 mi</text>
+              <text x="190" y="268" class="ms" text-anchor="middle">Alma School Rd &middot; 0.52 mi</text>
+              <line x1="151" y1="26" x2="534" y2="26" stroke="var(--brick)" stroke-width="1.5"/>
+              <line x1="151" y1="20" x2="151" y2="32" stroke="var(--brick)" stroke-width="1.5"/>
+              <line x1="534" y1="20" x2="534" y2="32" stroke="var(--brick)" stroke-width="1.5"/>
+              <text x="342" y="16" class="mb" text-anchor="middle" style="fill:var(--brick)">0.78 miles</text>
+            </g>
+          </svg></div>
+  <p class="cap">Distances measured from the property&rsquo;s own coordinates.</p>
+  <div class="hit"><p><b>A $2.5 billion development is going up 0.78 miles west.</b> The Palo
+  District, on the 77.9-acre former Fiesta Mall site, is planned around a 25,000-seat stadium for
+  professional women&rsquo;s soccer, a $100 million women&rsquo;s health campus, 600 hotel rooms
+  across two properties, plus retail and office. Mesa rezoned it a theme park district in November
+  2025, letting the district issue project-backed bonds and levy its own sales tax. Construction
+  begins this summer; the hotels open in early 2028.</p></div>
+  <p><b>A new Sprouts opens November 6</b> at Alma School and Southern, 0.44 miles west, inside a
+  15.8-acre development on the northeast corner. A grocery anchor that close changes the daily
+  traffic pattern on this stretch of Southern.</p>
+  <h3>The trade area</h3>
+  <div class="tw"><table>
+    <tr><th>2025</th><th>1 mile</th><th>3 miles</th><th>5 miles</th></tr>
+    <tr><td>Population</td><td>24,518</td><td>161,683</td><td>416,834</td></tr>
+    <tr><td>Growth to 2030</td><td>+3.21%</td><td>+3.37%</td><td>+3.48%</td></tr>
+    <tr><td>Households</td><td>9,867</td><td>61,753</td><td>160,934</td></tr>
+    <tr><td>Median income</td><td>$54,310</td><td>$66,325</td><td>$74,701</td></tr>
+    <tr><td>Average age</td><td>34</td><td>36</td><td>37</td></tr>
+  </table></div>
+  <p>A young trade area with household income below the valley median. That is the customer for
+  everyday services, not luxury retail. It is also the population a women&rsquo;s health campus
+  half a mile away will draw from.</p>
+ </div>
+</section>
+
+<section id="market">
+ <div class="wrap">
+  <p class="num">03</p>
+  <h2>The market, and what we should charge</h2>
+  <div class="tw"><table>
+    <tr><th>Benchmark</th><th>Asking</th><th>What it means for us</th></tr>
+    <tr><td>Mesa office, all classes</td><td>$23.25</td><td class="w">The floor. Do not price here.</td></tr>
+    <tr><td>Superstition Corridor</td><td>~$25.00</td><td class="w">Our submarket &mdash; 29 competing spaces</td></tr>
+    <tr><td>Class B office</td><td>$21.82</td><td class="w">What a generic suite gets</td></tr>
+    <tr><td>Class A office</td><td>$25.73</td><td class="w">Newer product we do not beat on finish</td></tr>
+    <tr><td>Mesa medical office</td><td>$32.05</td><td class="w"><b>Our actual category</b></td></tr>
+  </table></div>
+  <div class="box"><p><b>The pricing decision.</b> Medical office carries a 38 percent premium over
+  general office in this market. We have a medical building by county record, a licensed clinic as
+  the anchor, C-G zoning and nearly three acres of parking. We should market professional and
+  wellness suites in the high twenties, not compete for general office tenants at $22. The clinic
+  is the amenity, and nobody else on this stretch has one.</p></div>
+  <h3>What we are competing against</h3>
+  <ul class="t">
+    <li><b>29 available spaces in the Superstition Corridor</b> at roughly $25 &mdash; mostly plain office with no anchor and no draw.</li>
+    <li><b>Newer Class A product</b> that beats us on finish and loses to us on rate and parking.</li>
+    <li><b>The Palo District eventually</b> &mdash; newer and more expensive when it delivers, which is exactly why our window is now.</li>
+  </ul>
+  <p>What none of them have: a health system as landlord, referral flow from an operating clinic,
+  free parking on three acres, an Opportunity Zone designation, and a mission that lets us say yes
+  to a tenant a commercial landlord would not underwrite.</p>
+ </div>
+</section>
+
+<section id="anchors">
+ <div class="wrap">
+  <p class="num">04</p>
+  <h2>Three anchors first</h2>
+  <p class="lede">Anchors set the rent and bring the traffic. Everything after them leases faster
+  and for more. With fifteen suites open, this is the moment to be deliberate rather than take the
+  first caller.</p>
+  <div class="grid3">
+    <div class="card"><div class="k">1 &middot; Clinical</div>
+      <p>Optometry, physical therapy, podiatry, behavioral health, lab or imaging. Pays the
+      medical-office rate and feeds on referral flow from day one.</p></div>
+    <div class="card"><div class="k">2 &middot; Food</div>
+      <p>A small coffee shop or caf&eacute;. The patio is already built. It gives people a reason
+      to come when they do not have an appointment.</p></div>
+    <div class="card"><div class="k">3 &middot; Service</div>
+      <p>A credit union or CDFI branch, legal aid, or tax preparation. The 24,518 people within a
+      mile drive somewhere else for these today.</p></div>
+  </div>
+  <div class="two">
+    <div>
+      <h3>Where the clinical names come from</h3>
+      <p>Our own referral data. Which outside providers are we sending patients to, and how often.
+      That report already exists inside our system and it is the target list. They serve our
+      people and they already drive here.</p>
+      <h3>Why the caf&eacute; is not a small idea</h3>
+      <p>It is the cheapest thing we can do to change what the property feels like. Shaded tables
+      already sit under the arcade facing the planted court. We are offering a patio that exists,
+      not asking a tenant to build one. Price it as a draw, not as a rent line.</p>
+    </div>
+    <div>
+      <figure style="margin:0"><img src="img/patio.jpg" alt="Shaded concrete tables under the arcade">
+        <figcaption class="cap">The caf&eacute; patio, already built.</figcaption></figure>
+      <figure style="margin:16px 0 0"><img src="img/s215_recep.jpg" alt="A reception window inside Suite 215">
+        <figcaption class="cap">Suite 215&rsquo;s reception window &mdash; a clinical layout a tenant would otherwise pay to build.</figcaption></figure>
+    </div>
+  </div>
+ </div>
+</section>
+
+<section id="native">
+ <div class="wrap">
+  <p class="num">05</p>
+  <h2>Then fill the rest with Native businesses</h2>
+  <p class="lede">Once the anchors are set, the remaining suites go to Native-owned businesses on a
+  ladder, all at one address.</p>
+  <div class="grid3">
+    <div class="card"><div class="k">Rung one</div><p>A desk. Coworking membership, month to month, from the incubator.</p></div>
+    <div class="card"><div class="k">Rung two</div><p>A small office. Discounted, still from the incubator.</p></div>
+    <div class="card"><div class="k">Rung three</div><p>A market-rate suite. From NATIVE HEALTH, down the same hall.</p></div>
+  </div>
+  <p>The third rung is the one that matters. It moves a business from the program&rsquo;s books onto
+  ours, and it is the proof point we take to funders.</p>
+  <div class="box"><p><b>Two suites are ready now.</b> Suite 215 has private offices, a reception
+  window, a kitchenette and its own accessible restroom. Suite 315 has an open reception area and
+  private offices with new flooring throughout. Neither needs demolition, permits or a build-out
+  period.</p></div>
+  <h3>Where the names come from</h3>
+  <ul class="t">
+    <li>The tribes, the Phoenix Indian Center, Moonshot, CO+HOOTS and the ITCA member nations.</li>
+    <li>Eighteen member nations have citizens in Maricopa County, and nations have leased here before.</li>
+    <li>One broker working the Superstition Corridor on a defined commission, covering the general market.</li>
+  </ul>
+ </div>
+</section>
+
+<section id="offer">
+ <div class="wrap">
+  <p class="num">06</p>
+  <h2>The offer</h2>
+  <p>We will not win on rate and should not try. We win on terms, on what comes with the space, and
+  on who the landlord is.</p>
+  <div class="tw"><table>
+    <tr><th>Element</th><th>What we offer</th></tr>
+    <tr><td>Months 1 and 2</td><td class="w"><b>Half rent</b>, on a term of 36 months or longer</td></tr>
+    <tr><td>Month 3 onward</td><td class="w">Full contract rent</td></tr>
+    <tr><td>Improvements</td><td class="w">A published allowance per square foot, the same for everyone, not negotiated deal by deal</td></tr>
+    <tr><td>Signage</td><td class="w">On the monument and the building, included</td></tr>
+    <tr><td>Parking</td><td class="w">Free, nearly three acres, much of it shaded by solar canopy</td></tr>
+    <tr><td>Business support</td><td class="w">Mesa Business Builder coaching and a sponsored ASBA membership, arranged by us</td></tr>
+    <tr><td>Referrals</td><td class="w">Clinical tenants are introduced to our care teams</td></tr>
+    <tr><td>Decision</td><td class="w">In writing, within five business days of the tour</td></tr>
+  </table></div>
+  <div class="hit"><p><b>Why two months at half rent is the right number.</b> On a 1,200 square
+  foot suite at $26, the concession is about $2,600. One month of vacancy on that suite costs the
+  entire operating expense with no revenue against it &mdash; it still gets cooled, insured,
+  secured, lit and maintained. The concession costs less than the vacancy it prevents, and it buys
+  a three-year term.</p></div>
+  <p class="muted"><i>These terms are a working draft and have not been approved.</i></p>
+ </div>
+</section>
+
+<section id="incentives">
+ <div class="wrap">
+  <p class="num">07</p>
+  <h2>Incentives &mdash; what is real and who can use it</h2>
+  <h3>The Opportunity Zone</h3>
+  <p>Our tract, 4222.03, is a designated Opportunity Zone, confirmed in IRS Notice 2018-48. An
+  investor who puts a capital gain into a qualified fund here defers the tax and, after ten years,
+  pays nothing on the appreciation.</p>
+  <div class="box"><p><b>NATIVE HEALTH cannot use this.</b> We are a 501(c)(3) with no capital
+  gains to defer, so it is worth nothing to us directly. It is worth a great deal to the people we
+  are recruiting &mdash; a tenant financing a build-out, a developer looking at excess land, a
+  donor holding appreciated stock. That is a recruiting argument and we should be making it in
+  writing.</p></div>
+  <p>The current designation runs through <b>December 31, 2028</b>. The 2025 federal tax act made
+  the program permanent, and governors began nominating the next ten-year map on July 1, 2026, with
+  new designations effective January 1, 2027. Whether our tract is re-designated is an open
+  question and a direct ask for the City of Mesa.</p>
+  <h3>City of Mesa programs</h3>
+  <div class="tw"><table>
+    <tr><th>Program</th><th>What it is</th><th>Useful to us?</th></tr>
+    <tr><td>Mesa Business Builder</td><td class="w">Free professional support in marketing, accounting and strategic planning for small businesses</td><td class="w"><b>Yes</b> &mdash; a no-cost benefit for every tenant</td></tr>
+    <tr><td>ASBA sponsorship</td><td class="w">One-year Arizona Small Business Association membership, $350 value, for Mesa businesses under 100 employees</td><td class="w"><b>Yes</b> &mdash; put it in the welcome packet</td></tr>
+    <tr><td>Downtown utility rate</td><td class="w">25% off energy and water for three years for new small businesses</td><td class="w"><b>Downtown only.</b> Ask whether anything equivalent exists for this corridor.</td></tr>
+    <tr><td>GPLET</td><td class="w">Replaces real property tax with an excise tax on redevelopment</td><td class="w">Not directly; relevant to a for-profit partner</td></tr>
+    <tr><td>Foreign Trade Zone #221</td><td class="w">Follows General Industrial zoning</td><td class="w">No &mdash; we are zoned C-G</td></tr>
+  </table></div>
+  <p>The two we can hand a prospect today cost us nothing and cost them nothing. Most landlords on
+  this corridor are not offering them, because most have not learned they exist.</p>
+ </div>
+</section>
+
+<section id="organize">
+ <div class="wrap">
+  <p class="num">08</p>
+  <h2>How we organize ourselves</h2>
+  <p class="lede">This property is the test of whether we can run real estate professionally. We
+  hold eleven shopping centers&rsquo; worth of institutional memory from the Navajo Nation years
+  and almost none of the current discipline. This is the part that outlasts the leasing push.</p>
+  <h3>Who owns what</h3>
+  <div class="tw"><table>
+    <tr><th>Function</th><th>Owner</th><th>Standard</th></tr>
+    <tr><td>Leasing</td><td class="w">One named person, not a committee</td><td class="w">Pipeline reported monthly; a prospect gets a decision within five business days</td></tr>
+    <tr><td>Rent roll</td><td class="w">Finance</td><td class="w">Current to the month; no tenant past 60 days without a written plan</td></tr>
+    <tr><td>Lease approval</td><td class="w">Approval matrix &mdash; staff below a threshold, CEO above</td><td class="w">Written, so nobody has to ask who signs</td></tr>
+    <tr><td>Lease form</td><td class="w">Counsel, with Compliance</td><td class="w">One standard form; deviations logged and approved, never improvised</td></tr>
+    <tr><td>Maintenance</td><td class="w">Facilities</td><td class="w">Logged, ticketed, closed; response time tracked</td></tr>
+    <tr><td>Property management</td><td class="w">Orenda, under a scope</td><td class="w">Deliverables and dates in the scope, reviewed quarterly</td></tr>
+  </table></div>
+  <div class="hit"><p><b>The separation that has to hold.</b> The person who signs a lease should
+  not be the person who collects the rent, and neither should approve the improvement spend. That
+  is ordinary internal control, it is what Compliance will ask about, and it is far easier to put
+  in place now than to retrofit after the building fills.</p></div>
+  <h3>The systems we need</h3>
+  <ul class="t">
+    <li><b>A rent roll that is one document</b> &mdash; suite, size, tenant, rate, term, expiry, escalations, options, deposit. Today this is scattered.</li>
+    <li><b>Lease abstracts</b> &mdash; one page per lease, so nobody reads forty pages to answer a question.</li>
+    <li><b>A leasing pipeline</b> &mdash; every prospect, stage, next action and date. A spreadsheet is enough; the discipline matters more than the software.</li>
+    <li><b>A work order system</b> with a tenant-facing way to report a problem and a record of when it closed.</li>
+    <li><b>A tenant file</b> per tenant &mdash; lease, insurance certificate, business license, contacts, correspondence.</li>
+    <li><b>A published rate card and standard lease.</b> Negotiating each deal from scratch is how small portfolios lose money.</li>
+  </ul>
+  <h3>The rhythm</h3>
+  <div class="tw"><table>
+    <tr><th>Cadence</th><th>What happens</th></tr>
+    <tr><td>Weekly</td><td class="w">Leasing pipeline reviewed &mdash; every prospect gets a next action and a date</td></tr>
+    <tr><td>Monthly</td><td class="w">Rent roll, aging, occupancy and work orders to Finance and the Executive Team</td></tr>
+    <tr><td>Quarterly</td><td class="w">Occupancy against the 90 percent standard, renewals in the next twelve months, capital needs, vendor review</td></tr>
+    <tr><td>Annually</td><td class="w">Rate card reset against market comps; reserve funded against the capital plan</td></tr>
+  </table></div>
+  <h3>The numbers we hold ourselves to</h3>
+  <ul class="t">
+    <li><b>90 percent occupancy</b>, stated as a standard and reported alongside the clinical numbers.</li>
+    <li><b>Five business days</b> from tour to written decision.</li>
+    <li><b>Zero tenants past 60 days</b> in arrears without a written payment plan.</li>
+    <li><b>Twelve months&rsquo; notice</b> before any lease expiry &mdash; renewals start a year out, not a month out.</li>
+    <li><b>A funded reserve.</b> The cooling situation is what an unfunded reserve looks like, and H&amp;R Block going dark is what it costs in rent.</li>
+  </ul>
+ </div>
+</section>
+
+<section id="next">
+ <div class="wrap">
+  <p class="num">09</p>
+  <h2>Next steps</h2>
+  <div class="todo"><b>By Friday, October 30</b>Suite inventory and readiness, every suite: size,
+  condition, HVAC and electrical, accessibility, cost to make ready, target rate. <i>Orenda, with Tony and Bettina.</i></div>
+  <div class="todo"><b>This week</b>Pull our own outbound referral data. That report becomes the
+  clinical anchor target list. <i>Francie.</i></div>
+  <div class="todo"><b>By Friday, November 6</b>City of Mesa Economic Development meeting. Ask
+  about the next Opportunity Zone nomination round, the Palo District timeline, any corridor
+  equivalent of the downtown utility program, and whether we belong in a city prospectus.</div>
+  <div class="todo"><b>By Friday, November 6</b>Target tenant list and approval criteria agreed
+  with Walter, reviewed with Compliance.</div>
+  <div class="todo"><b>By Friday, November 13</b>Rate card, the Southern Avenue Start terms, the
+  improvement allowance and a standard lease form. Counsel review before any of it goes out.</div>
+  <div class="todo"><b>By November 20</b>Broker engaged, or leasing formally assigned internally to
+  a named person with a monthly pipeline report.</div>
+  <div class="todo"><b>By November 30</b>The operating model adopted: owners named, rent roll
+  consolidated, approval matrix written.</div>
+  <div class="todo"><b>December</b>Sewing lab sited at Mesa. The equipment is already on the
+  property and suites are available now. 16th Street cannot house it until 2028.</div>
+  <div class="todo"><b>Running in parallel</b>Cooling certainty. Mini-split quotes November 6,
+  decision in December. No serious tenant signs into a building whose cooling history is
+  unresolved. This is a leasing precondition, not a facilities side issue.</div>
+ </div>
+</section>
+
+<div class="wrap foot">
+  <p><b>Sources.</b> Property record, Maricopa County. Suite counts from the NATIVE HEALTH
+  occupancy memo and the October 15 Orenda notes. Demographics, 2025 one-, three- and five-mile
+  rings. Mesa office and medical office asking rates, October 2026. Palo District reporting and
+  City of Mesa theme park district rezoning, November 2025. Sprouts Farmers Market, 1110 W.
+  Southern Avenue, opening November 6, 2026. Opportunity Zone status confirmed in IRS Notice
+  2018-48, tract 4222.03. City programs from Select Mesa and the City of Mesa Office of Economic
+  Development. Photographs: NATIVE HEALTH.</p>
+  <p><a href="https://mesabusinesscenter.github.io">&larr; Back to the leasing page</a></p>
+</div>
