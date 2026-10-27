@@ -1,6 +1,6 @@
-# Mesa Business Center — leasing plan
+# Mesa Business Center — growth strategy
 
-Working plan behind the leasing page at https://mesabusinesscenter.github.io
+The strategy behind the leasing page at https://mesabusinesscenter.github.io
 
 Live at https://mesabusinesscenter.github.io/plan/
 
