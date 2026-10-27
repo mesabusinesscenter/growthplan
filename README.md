@@ -1,8 +1,8 @@
-# Mesa Business Center — growth strategy
+# Mesa Business Center — growth plan
 
-The strategy behind the leasing page at https://mesabusinesscenter.github.io
+Live at https://mesabusinesscenter.github.io/growthplan/
 
-Live at https://mesabusinesscenter.github.io/plan/
+The leasing page it supports: https://mesabusinesscenter.github.io
 
 Terms shown, including the first-two-months concession, are a draft and
 have not been approved.
